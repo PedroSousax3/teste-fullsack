@@ -1,0 +1,30 @@
+div#menu-atividade > header {
+    position: fixed;
+
+    height: 40px;
+    width: 100%;
+
+    background-color: #141414;
+
+    text-align: center;
+    color: white;
+    font-weight: 600;
+}
+
+div#menu-atividade > header#menu-top {
+    top: 0px;
+}
+
+div#menu-atividade > header#menu-top > h1 {
+    font-size: 30px;
+    margin: auto 0px;
+}
+
+div#menu-atividade > header#menu-bottom {
+    bottom: 0px;
+}
+
+div#menu-atividade > header#menu-bottom > a {
+    margin: auto 50px;
+    font-size: 25px;
+}

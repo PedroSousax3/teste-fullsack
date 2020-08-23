@@ -1,0 +1,30 @@
+div.menu * {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+div.menu > header {
+    height: 40px;
+    width: 100vw;
+    background-color: #141414;
+    position: fixed;
+}
+
+div.menu > header#menu-cima {
+    text-align: center;
+    top: 0;
+}
+
+div.menu > header#menu-baixo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    bottom: 0;
+}
+
+div.menu > header#menu-cima > span.menu-logo {
+    line-height: 35px;
+    font-size: 40px;
+    font-weight: 600;
+}
