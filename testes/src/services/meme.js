@@ -28,7 +28,7 @@ export default class MemeApi {
 
     consultarImagem(nome) {
         const local = api.defaults.baseURL + '/foto/' + nome;
-        return local.data
+        return local
     }
 
     async AlterarMeme(id, meme){

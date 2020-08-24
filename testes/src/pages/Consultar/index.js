@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 
 //Styles:
 import './consultar.css'
@@ -14,76 +13,76 @@ import Api from '../../services/meme.js'
 const funcaoApi = new Api()
 
 export default function Consultar(){
+    
 
     const [registros, setRegistros] = useState([]);  
 
     const consultarTodos = async () => {
-        const result = await funcaoApi.consultarMemes()
-        setRegistros([...result])
+        const result = await funcaoApi.consultarMemes();
+        setRegistros([...result]);
+        console.log(...result)
     }
 
     const removerPorId = async (meme) => {
-        await funcaoApi.removerMemes(meme.id)
+        console.log(meme)
+        await funcaoApi.removerMemes(meme.id);
+
+        this.consultarTodos();
     }
 
     return (
         <div id = "consultar">
+        <main>
             <Menu />
-            <button
-                onClick = {consultarTodos}
-            > 
-                Listar Memes
-            </button>
 
-            <table className = "table">
+            <button onClick = {consultarTodos}>Consultar</button>
+
+            {/*<table className = "table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>AUTOR</th>
-                        <th>CATEGORIA</th>
-                        <th>HASHTAGS</th>
-                        <th>MAIOR</th>
-                        <th>IMAGEM</th>
-                        <th>INCLUSÃO</th>
-                        <th>ALTERAR</th>
-                        <th>REMOVER</th>
+                        <th>Autor</th>
+                        <th>Categoria</th>
+                        <th>Hashtags</th>
+                        <th>Maior</th>
+                        <th>Imagem</th>
+                        <th>Inclusao</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {registros.map(x => 
-                        <tr key = {x.id}>
-                            <td>{x.id}</td>
-                            <td>{x.autor}</td>
-                            <td>{x.categoria}</td>
-                            <td>{x.hashtags}</td>
-                            <td>{x.maior}</td>
-                            <td>{x.imagem}</td>
-                            <td>{x.inclusao}</td>
-                            <td>
-                                <Link className="btn btn-warning" to = {
-                                    {
-                                        pathname: "/Alterar",
-                                        state: {
-                                            id: x.id,
-                                            autor: x.autor,
-                                            categoria: x.categoria,
-                                            hashtags: x.hashtags,
-                                            maior: x.maior,
-                                            imagem: x.imagem
-                                        }
-                                    }
-                                }>
-                                    Alterar
-                                </Link>
-                            </td>
-                            <td>
-                                <button onClick = {removerPorId(x)}>Remover</button>
-                            </td>
-                            {console.log(x)}
-                        </tr>
-                    )}
+                    {
+                        registros.map( x =>
+                            <tr>
+                                <th>{x.id}</th>
+                                <th>{x.autor}</th>
+                                <th>{x.categoria}</th>
+                                <th>{x.hashtags}</th>
+                                <th>{x.maior ?"Sim" :"Não" }</th>
+                                <th>
+                                    <img src = {funcaoApi.consultarImagem(x.imagem)} height = "30px" />
+                                </th>
+                                <th>{x.inclusao}</th>
+                            </tr>
+                        )
+                    }
                 </tbody>
-            </table>
+            </table>*/}
+            {
+                registros.map(x =>
+                    <div className="card" Key = {x.id}>
+                        <img className = "card-img-top" src = {funcaoApi.consultarImagem(x.imagem)} height = "250px"  alt="Imagem de capa do card" />
+                        <div className="card-body"  Key = {x.id}>
+                            <h5 className="card-title">Autor: {x.autor}</h5>
+                            <p className="card-text">Para Maior de Idade:{x.maior? "Sim" : "Não"}</p>
+                            <p className="card-text">Categorias do Meme: {x.categoria}</p>
+                            <p className="card-text">Hashtags: {x.hashtags}</p>
+
+                            <button className = "btn btn-danger" onClick = {() => removerPorId(x)}>Remover</button>
+                        </div>
+                    </div>
+                )
+            }
+        </main>
         </div>
     );
 }

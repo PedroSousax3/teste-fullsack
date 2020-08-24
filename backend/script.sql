@@ -51,3 +51,4 @@ create table tb_memelation (
 
 
 
+dotnet ef dbcontext scaffold "server=localhost;user id=root;password=1234;database=bd_fullstack" Pomelo.EntityFrameworkCore.MySql -o Models --data-annotations --force
