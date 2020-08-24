@@ -31,8 +31,22 @@ export default class MemeApi {
         return local.data
     }
 
-    async removerMemes(idMeme) {
-        await api.delete(`/${idMeme}`)
+    async AlterarMeme(id, meme){
+
+        let formtData = new FormData()
+        formtData.append('Autor', meme.autor)
+        formtData.append('Categoria', meme.categoria)
+        formtData.append('Hashtags', meme.hashtags)
+        formtData.append('Maior', meme.maior)
+        formtData.append('Imagem', meme.imagem)
+
+        await api.put(`/${id}`, formtData, {
+            headers: {'content-type': 'multipart/form-data'}
+        })
+    }
+
+    async removerMemes(id) {
+        await api.delete(`/${id}`)
         this.consultarMemes();
     }
 }
