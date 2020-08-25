@@ -18,12 +18,12 @@ export default function Alterar(props){
     const [ imagem, setImagem ] = useState(props.location.state.imagem)
 
     async function CadastrarMeme() {
-        /*console.log(props.location.state.id)
+        console.log(props.location.state.id)
         console.log(autor)
         console.log(categoria)
         console.log(hashtags)
         console.log(maior)
-        console.log(imagem)*/
+        console.log(imagem)
 
         await funcaoApi.AlterarMeme(props.location.state.id, {
             autor,
@@ -66,36 +66,13 @@ export default function Alterar(props){
                               value = {hashtags}
                         />
 
-                        <label>Faixa etaria: </label>
-                        <div className = "form-check form-check-inline">
-                            <input type = "radio" 
-                              className = "form-check-input" 
-                                   name = "idade"
-                               onChange = {x => setMaior(false)} 
+                        <div className="form-check">
+                            <input className = "form-check-input" 
+                                    type = "checkbox"
+                                onChange = {x => setMaior(!maior)}
                             />
-                            <label className = "form-check-label">
-                                Recomendado para maior de 18 anos (18+).
-                            </label>
-                        </div>
-                        <div className = "form-check form-check-inline">
-                            <input type = "radio" 
-                              className = "form-check-input" 
-                                   name = "idade"
-                               onChange = {x => setMaior(true)} 
-                               />
-                            <label className = "form-check-label">
-                                Para Todas as idades.
-                            </label>
-                        </div>
-
-                        <div className = "custom-file">
-                            <input type = "file" 
-                              className = "custom-file-input" 
-                              onChange = {x => setImagem(x.target.files[0])}
-                              value = {imagem.fileName}
-                            />
-                            <label className = "custom-file-label">
-                                Escolher arquivo...
+                            <label className="form-check-label">
+                                Recomendado apenas para maiores de idade
                             </label>
                         </div>
                     </div>
@@ -103,7 +80,7 @@ export default function Alterar(props){
                     <button type = "button" 
                        className = "btn btn-success"
                          onClick = {CadastrarMeme}>
-                            Cadastrar
+                            Alterar
                     </button>
                 </form>
             </main>

@@ -14,16 +14,16 @@ export default function Cadastrar(){
     const [ autor, setAutor ] = useState("")
     const [ categoria, setCategoria ] = useState("")
     const [ hashtags, setHashtags ] = useState("")
-    const [ maior, setMaior ] = useState()
+    const [ maior, setMaior ] = useState(false)
     const [ imagem, setImagem ] = useState()
 
 
     async function CadastrarMeme() {
-        /*console.log(autor)
+        console.log(autor)
         console.log(categoria)
         console.log(hashtags)
         console.log(maior)
-        console.log(imagem)*/
+        console.log(imagem)
 
         await funcaoApi.cadastrarMeme({
             autor: autor,
@@ -63,23 +63,13 @@ export default function Cadastrar(){
                            onChange = {x => setHashtags(x.target.value)}
                         />
 
-                        <label>Faixa etaria: </label>
-                        <div className = "form-check form-check-inline">
-                            <input type = "radio" 
-                              className = "form-check-input" 
-                                   name = "idade"
-                               onChange = {x => setMaior(false)}/>
-                            <label className = "form-check-label">
-                                Recomendado para maior de 18 anos (18+).
-                            </label>
-                        </div>
-                        <div className = "form-check form-check-inline">
-                            <input type = "radio" 
-                              className = "form-check-input" 
-                                   name = "idade"
-                               onChange = {x => setMaior(true)} />
-                            <label className = "form-check-label">
-                                Para Todas as idades.
+                        <div className="form-check">
+                            <input className = "form-check-input" 
+                                    type = "checkbox"
+                                onChange = {() => setMaior(!maior)}
+                            />
+                            <label className="form-check-label">
+                                Recomendado apenas para maiores de idade
                             </label>
                         </div>
 
