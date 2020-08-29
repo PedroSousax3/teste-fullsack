@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 //Components:
 import Menu from '../../components/Memu-Atividade/index.js'
+
+//Styles:
+import 'react-toastify/dist/ReactToastify.css';
 
 //Class:
 import Api from '../../services/meme.js'
@@ -32,6 +36,8 @@ export default function Cadastrar(){
             maior: maior,
             imagem: imagem
         })
+
+        toast.dark('✅ Meme cadastrado com sucesso')
     }
 
     return (
@@ -91,6 +97,8 @@ export default function Cadastrar(){
                     </button>
                 </form>
             </main>
+
+            <ToastContainer />
         </div>
     )
 }

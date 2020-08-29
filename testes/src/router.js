@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Cadastrar from './pages/Cadastrar/index.js'
 import Consultar from './pages/Consultar/index.js'
 import Alterar from './pages/Alterar/index.js'
+import Teste from './pages/Teste/index.js'
 
 export default function Rotas() {
     return (
@@ -13,6 +14,7 @@ export default function Rotas() {
                 <Route path = "/" exact = {true} component = {Consultar} />
                 <Route path = "/Cadastrar" component = {Cadastrar} />
                 <Route path = "/Alterar" component = {Alterar} />
+                <Route path = "/Teste" component = {Teste} />
             </Switch>
         </BrowserRouter>
     )

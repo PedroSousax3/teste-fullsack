@@ -1,51 +1,28 @@
-div.card {
-    margin-top: 50px;
-    width: 260px;
-    padding: 0px 0px 15px 0px;
+div.card-item{
+    width: 270px;
+    min-height: 300px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+
+
+    background-color: white;
     border-radius: 5px;
-
-    background-color: #141414;
+    box-shadow: 1px 1px 5px black;
 }
 
-div.card > .item-omissao {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    
-    background-color: black;
-    opacity: 0.988;
-    border-radius: 5px;
-    
-    text-align: center;
-    transition: all linear 1s;
 
-    z-index: 5;
+.item-card {
+    font-size: 15px;
+    font-weight: 600;
 }
 
-div.card > div.item-media {
-    max-width: 260px;
-    height: 180px;
-    background-color: rgb(46, 44, 44);
-
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-
-    text-align: end;
-}
-
-div.card > div.titulo {
+.titulo {
+    font-weight: 700;
     font-size: 20px;
-    text-align: center;
-    color: white;
+    opacity: .9;
 }
 
-div.card > div.item {
-    font-size: 18px;
-    text-align: start;
-    padding-left: 8px;
-    color: white;
-}
-
-div.card > .item-omissao > p {
-    color: white;
+div.card-item > div.imagem > img {
+    width: 270px;
 }
