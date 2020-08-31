@@ -1,4 +1,4 @@
-create mydb;
+create database mydb;
 use mydb;
 
 
@@ -44,8 +44,15 @@ create table tb_memelation (
     ds_hashtags				varchar(200) not null,
     bt_maior				bool 		 not null,
     img_meme				varchar(100) not null,
-    dt_inclusao				datetime     not null
+    dt_inclusao				datetime     not null,
+    nr_curtidas				int
 );
+
+create table tb_comentarios(
+	id_comentario			int primary key auto_increment,
+    id_memelation			int,
+    ds_comentario			varchar(255)
+)
 
 
 

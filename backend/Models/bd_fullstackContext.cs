@@ -15,58 +15,18 @@ namespace backend.Models
         {
         }
 
-        public virtual DbSet<TbListaFofa> TbListaFofa { get; set; }
-        public virtual DbSet<TbListaNegra> TbListaNegra { get; set; }
         public virtual DbSet<TbMemelation> TbMemelation { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;user id=root;password=45923617xx;database=bd_fullstack", x => x.ServerVersion("8.0.20-mysql"));
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=bd_fullstack", x => x.ServerVersion("8.0.18-mysql"));
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TbListaFofa>(entity =>
-            {
-                entity.HasKey(e => e.IdListaFofa)
-                    .HasName("PRIMARY");
-
-                entity.Property(e => e.DsPorque)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
-
-                entity.Property(e => e.NmFofura)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
-            });
-
-            modelBuilder.Entity<TbListaNegra>(entity =>
-            {
-                entity.HasKey(e => e.IdListaNegra)
-                    .HasName("PRIMARY");
-
-                entity.Property(e => e.DsFoto)
-                    .HasDefaultValueSql("'user.png'")
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
-
-                entity.Property(e => e.DsLocal)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
-
-                entity.Property(e => e.DsMotivo)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
-
-                entity.Property(e => e.NmPessoa)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
-            });
-
             modelBuilder.Entity<TbMemelation>(entity =>
             {
                 entity.HasKey(e => e.IdMemelation)

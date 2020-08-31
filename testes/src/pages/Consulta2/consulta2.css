@@ -1,0 +1,7 @@
+main.container-meio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+}
