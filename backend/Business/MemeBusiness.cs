@@ -45,5 +45,13 @@ namespace backend.Business
 
             return db.Alterar(id, novaTb);
         }
+
+        public void AlterarCurtidas(int? id) 
+        {
+                if (id <= 0)
+                throw new Exception("ID inválido");
+
+            db.AdicionarCurtidas(id);
+        }
     }
 }

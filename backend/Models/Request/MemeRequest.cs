@@ -9,6 +9,6 @@ namespace backend.Models.Request
         public string Categoria { get; set; }
         public string Hashtags { get; set; }
         public bool Maior { get; set; }
-        public IFormFile Imagem { get; set; }        
+        public IFormFile Imagem { get; set; }      
     }
 }

@@ -1,6 +1,7 @@
-create database mydb;
-use mydb;
+drop database bd_fullstack;
 
+create database bd_fullstack;
+use bd_fullstack;
 
 create table tb_lista_negra (
 	id_lista_negra		int primary key auto_increment,
@@ -45,17 +46,16 @@ create table tb_memelation (
     bt_maior				bool 		 not null,
     img_meme				varchar(100) not null,
     dt_inclusao				datetime     not null,
-    nr_curtidas				int
+	nr_curtidas				int
 );
 
-create table tb_comentarios(
+select * from tb_memelation;
+
+create table tb_comentario (
 	id_comentario			int primary key auto_increment,
-    id_memelation			int,
-    ds_comentario			varchar(255)
-)
+    id_meme					int not null,
+    ds_comentario			varchar(255),
+    dt_postado				datetime not null
+);
 
-
-
-
-
-dotnet ef dbcontext scaffold "server=localhost;user id=root;password=1234;database=bd_fullstack" Pomelo.EntityFrameworkCore.MySql -o Models --data-annotations --force
+dotnet ef dbcontext scaffold "server=localhost;user id=root;password=45923617xx;database=bd_fullstack" Pomelo.EntityFrameworkCore.MySql -o Models --data-annotations --force

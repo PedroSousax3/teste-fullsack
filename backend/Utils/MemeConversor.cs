@@ -27,6 +27,7 @@ namespace backend.Utils
             resp.Maior = tb.BtMaior;
             resp.Imagem = tb.ImgMeme;
             resp.Inclusao = tb.DtInclusao;
+            resp.Curtidas = tb.NrCurtidas;
 
             return resp;
         }

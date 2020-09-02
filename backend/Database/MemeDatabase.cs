@@ -22,19 +22,6 @@ namespace backend.Database
             return db.TbMemelation.ToList();
         }
 
-        public Models.TbMemelation Deletar (int id)
-        {
-            Models.TbMemelation tb = 
-                db.TbMemelation.FirstOrDefault(x => x.IdMemelation == id);
-        
-            if (tb != null)
-            {
-                db.TbMemelation.Remove(tb);
-                db.SaveChanges();
-            }
-
-            return tb;
-        }
 
         public Models.TbMemelation Alterar (int id, Models.TbMemelation novaTb)
         {
@@ -54,6 +41,27 @@ namespace backend.Database
 
             return tb;
         }
+
+        public void AdicionarCurtidas (int? id) 
+        {
+            Models.TbMemelation meme = db.TbMemelation.FirstOrDefault(x => x.IdMemelation == id);
+
+            meme.NrCurtidas = meme.NrCurtidas + 1;
+            db.SaveChanges();
+        }
         
+        public Models.TbMemelation Deletar (int id)
+        {
+            Models.TbMemelation tb = 
+                db.TbMemelation.FirstOrDefault(x => x.IdMemelation == id);
+        
+            if (tb != null)
+            {
+                db.TbMemelation.Remove(tb);
+                db.SaveChanges();
+            }
+
+            return tb;
+        }
     }
 }

@@ -89,7 +89,23 @@ namespace backend.Controllers
                     new Models.Response.ErroResponse(400, ex.Message)
                 );
             }
-        } 
+        }
+
+        [HttpPut("curtidas/{idmeme}")]
+        public ActionResult AdicionarCurtidas(int? idmeme) 
+        {
+            try 
+            {
+                business.AlterarCurtidas(idmeme);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.ErroResponse(400, ex.Message)
+                );
+            }
+        }
 
         [HttpDelete("{id}")]
         public ActionResult<Models.Response.MemeResponse> Deletar (int id) 

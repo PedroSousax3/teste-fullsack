@@ -2,6 +2,43 @@ main.container-meio {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
-    
+div.post {
+    background-color: black;
+    width: 650px;
+    min-height: 500px;
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+div.item-post {
+    flex-grow: 1;
+    background-color: white;
+
+    border: 2px solid black;
+}
+
+div.titulo {
+    flex-grow: unset;
+    height: 50px;
+    padding: 0px 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.img {
+    text-align: center;
+}
+
+div.descricao {
+    min-height: 50px;
+}
+
+div.img > img {
+    height: 100%;
 }

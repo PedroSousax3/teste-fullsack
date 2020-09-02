@@ -9,7 +9,7 @@ namespace backend.Models
     public partial class TbMemelation
     {
         [Key]
-        [Column("id_memelation", TypeName = "int(11)")]
+        [Column("id_memelation")]
         public int IdMemelation { get; set; }
         [Required]
         [Column("nm_autor", TypeName = "varchar(100)")]
@@ -27,5 +27,7 @@ namespace backend.Models
         public string ImgMeme { get; set; }
         [Column("dt_inclusao", TypeName = "datetime")]
         public DateTime DtInclusao { get; set; }
+        [Column("nr_curtidas")]
+        public int? NrCurtidas { get; set; }
     }
 }

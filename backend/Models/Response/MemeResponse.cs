@@ -11,5 +11,6 @@ namespace backend.Models.Response
         public bool Maior { get; set; }
         public string Imagem { get; set; }
         public DateTime Inclusao { get; set; }
+        public int? Curtidas { get; set; }
     }
 }
