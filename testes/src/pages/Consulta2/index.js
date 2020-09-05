@@ -11,8 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 //Components:
 import Menu from '../../components/Memu-Atividade/index.js'
 
-//Class:
+//Funções Api:
 import Api from '../../services/meme.js'
+import { consultarComentario, cadastrarComentario } from '../../services/comentario.js'
 
 //Instâncias:
 const funcaoApi = new Api()
@@ -23,15 +24,44 @@ export default function Consulta(){
     //loanding - Bar
     const ref = useRef(null);
 
-    const [registros, setRegistros] = useState([]);  
+    const [registros, setRegistros] = useState([]);
+    const [dadoscoment, setDadosComent] = useState([]);
+    const [comentario, setComentario] = useState("");
+
+    const consultComentario = async () => {
+        let dados = await consultarComentario();
+        setDadosComent([...dados])
+        console.log(dadoscoment)
+    }  
+
+    const adicionarComentario = async (meme) => {
+        console.log(meme.idMemelation)
+        
+        await cadastrarComentario(
+            {
+                meme : meme.idMemelation,
+                comentario
+            }
+        )
+
+        consultarTodos()
+
+        toast.dark("✅ Comentario Adicionado com sucesso!!")
+    }
 
     const consultarTodos = async () => {
         ref.current.continuousStart()
         const result = await funcaoApi.consultarMemes();
         setRegistros([...result]);
-        console.log(...result)
         ref.current.complete()
+        console.log(...registros)
+        consultComentario();
     }    
+    const adicionarCurtida = async (meme) => {
+        await funcaoApi.AlterarCurtidas(meme.idMemelation)
+
+        consultarTodos();
+    }
 
     const removerPorId = async (meme) => {
         await funcaoApi.removerMemes(meme.id)
@@ -39,7 +69,6 @@ export default function Consulta(){
 
         toast.dark("❌ Meme removido com sucesso!!!")
     }
-
 
     return(
 
@@ -60,20 +89,34 @@ export default function Consulta(){
                         <div className = "post">
                             <div className = "item-post titulo">
                                 <div>
-                                    {x.autor}
+                                    {x.nmAutor}
                                 </div>
                                 <div>
-                                    {x.inclusao}
+                                    {x.dtInclusao}
                                 </div>
                             </div>
 
                             <div className = "item-post img">
-                                <img src = {funcaoApi.consultarImagem(x.imagem)} alt = "e" />
+                                <img src = {funcaoApi.consultarImagem(x.imgMeme)} alt = "e" />
                             </div>
 
                             <div className = "item-post descricao">
-                                <div>{x.categoria}</div>
-                                <div>{x.hashtags}</div>
+                                {dadoscoment.map(y =>
+                                    y.meme === x.idMemelation && 
+                                    <div>
+                                        {y.comentario}
+                                    </div>
+                                )}
+                            </div>
+                            <div className = "item-post descricao">
+                                <div>Categoria: {x.dsCategoria}</div>
+                                <div>Hashtags: {x.dsHashtags}</div>
+                                <div onClick = {() => adicionarCurtida(x)}>
+                                    {x.nrCurtidas} <i className="fas fa-heart"></i>
+                                </div>
+                                <label>Comentario</label>
+                                <input type = "text" onChange = {(y) => setComentario(y.target.value)} />
+                                <button onClick = {() => adicionarComentario(x)}>Enviar</button>
                             </div>
                             <div className = "item-post descricao">
                                 <div>

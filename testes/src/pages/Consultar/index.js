@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import LoadingBar from 'react-top-loading-bar'
 import { ToastContainer, toast } from 'react-toastify'
+//import { ConsultarApi } from '../../services/meme.js'
 
 //Styles:
 import './consultar.css'
@@ -31,7 +32,7 @@ export default function Consultar(){
         console.log(...result)
         ref.current.complete()
     }
-
+    
     const removerPorId = async (meme) => {
         await funcaoApi.removerMemes(meme.id)
         consultarTodos();
@@ -66,17 +67,17 @@ export default function Consultar(){
                         {
                             registros.map( x =>
                                 <tr>
-                                    <td>{x.id}</td>
-                                    <td>{x.autor}</td>
-                                    <td>{x.categoria}</td>
-                                    <td>{x.hashtags}</td>
-                                    <td>{x.maior ?"Sim" :"Não" }</td>
+                                    <td>{x.idMemelation}</td>
+                                    <td>{x.nmAutor}</td>
+                                    <td>{x.dsCategoria}</td>
+                                    <td>{x.dsHashtags}</td>
+                                    <td>{x.btMaior ?"Sim" :"Não" }</td>
                                     <td>
-                                        <img src = {funcaoApi.consultarImagem(x.imagem)} 
+                                        <img src = {funcaoApi.consultarImagem(x.imgMeme)} 
                                         height = "30px" 
                                             alt = "Foto"/>
                                     </td>
-                                    <td>{x.inclusao}</td>
+                                    <td>{x.dtInclusao}</td>
                                     <td>
                                         <button className = "btn btn-danger" 
                                                 onClick = {() => removerPorId(x)}>

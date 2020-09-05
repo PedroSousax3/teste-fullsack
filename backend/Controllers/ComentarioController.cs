@@ -14,13 +14,22 @@ namespace backend.Controllers
         Business.ComentarioBusiness funcaoRN = new Business.ComentarioBusiness();
 
         [HttpPost]
-        public Models.Response.ComentarioResponse Inserir(Models.Request.ComentarioRequest novo) 
+        public ActionResult<Models.Response.ComentarioResponse> Inserir(Models.Request.ComentarioRequest novo) 
         {
-            Models.TbComentario comentario = Convert.Converter(novo);
+            try 
+            {
+                Models.TbComentario comentario = Convert.Converter(novo);
 
-            Models.TbComentario adicionado = funcaoRN.InserirRN(comentario);
+                Models.TbComentario adicionado = funcaoRN.InserirRN(comentario);
 
-            return Convert.Converter(adicionado);
+                return Convert.Converter(adicionado);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.ErroResponse(400, ex.Message)
+                );
+            }
         }
 
         [HttpGet]
@@ -28,7 +37,28 @@ namespace backend.Controllers
         {
             List<Models.TbComentario> comentario = funcaoRN.ConsultarComentarioRN(idmeme);
 
-            return comentario.Select(x => Convert.Converter(x)).ToList();
+            List<Models.Response.ComentarioResponse> result = 
+                comentario.Select(x => 
+                    Convert.Converter(x))
+                            .ToList();
+
+            return result;
+        }
+
+        [HttpGet("Listar")]
+        public ActionResult<List<Models.Response.ComentarioResponse>> ListarComentarios()
+        {
+            try
+            {
+                List<Models.TbComentario> consulta = funcaoRN.ListarRN();
+                return consulta.Select(x => Convert.Converter(x)).ToList();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.ErroResponse(400, ex.Message)
+                );
+            }
         }
     }
 }

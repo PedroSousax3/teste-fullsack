@@ -7,7 +7,7 @@ namespace backend.Utils
         {
             Models.TbComentario novo = new Models.TbComentario();
 
-            novo.IdMeme = comentario.meme;
+            novo.IdMemelation = comentario.meme;
             novo.DsComentario = comentario.comentario;
 
             return novo;
@@ -18,7 +18,7 @@ namespace backend.Utils
             Models.Response.ComentarioResponse novo = new Models.Response.ComentarioResponse();
 
             novo.id = comentario.IdComentario;
-            novo.meme = comentario.IdMeme;
+            novo.meme = comentario.IdMemelation;
             novo.comentario = comentario.DsComentario;
             novo.data = comentario.DtPostado;
 

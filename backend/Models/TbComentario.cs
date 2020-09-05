@@ -11,11 +11,15 @@ namespace backend.Models
         [Key]
         [Column("id_comentario")]
         public int IdComentario { get; set; }
-        [Column("id_meme")]
-        public int IdMeme { get; set; }
+        [Column("id_memelation")]
+        public int IdMemelation { get; set; }
         [Column("ds_comentario", TypeName = "varchar(255)")]
         public string DsComentario { get; set; }
         [Column("dt_postado", TypeName = "datetime")]
         public DateTime DtPostado { get; set; }
+
+        [ForeignKey(nameof(IdMemelation))]
+        [InverseProperty(nameof(TbMemelation.TbComentario))]
+        public virtual TbMemelation IdMemelationNavigation { get; set; }
     }
 }

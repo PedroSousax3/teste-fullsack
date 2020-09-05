@@ -10,7 +10,7 @@ namespace backend.Business
         {
             comentario.DtPostado = DateTime.Now;
 
-            if(comentario.IdMeme > 0)
+            if(comentario.IdMemelation <= 0)
                 throw new Exception("Meme invalido.");
             if(string.IsNullOrEmpty(comentario.DsComentario))
                 throw new Exception("Campo comentario deve ser preenchido.");
@@ -20,10 +20,20 @@ namespace backend.Business
 
         public List<Models.TbComentario> ConsultarComentarioRN(int idmeme)
         {
-            if(idmeme > 0)
+            if(idmeme <= 0)
                 throw new Exception("Meme invalido.");
 
             return funcaoBD.ConsultarComentariosBD(idmeme);
+        }
+
+        public List<Models.TbComentario> ConsultarMemeCompleto()
+        {
+            return funcaoBD.ConsultarMemeCompleto();
+        }
+
+        public List<Models.TbComentario> ListarRN ()
+        {
+            return funcaoBD.ListarBD();
         }
     }
 }

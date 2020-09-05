@@ -12,3 +12,10 @@ main {
     min-height: calc(100vh - 80px);
     width: 100%;
 }
+
+:root {
+    --blue-clear: #D8D7F3;
+    --blue-medium: #5E6BDD;
+    
+    --Grey-medium: #C4C4C4;
+}

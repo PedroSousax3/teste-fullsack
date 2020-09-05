@@ -53,7 +53,7 @@ namespace backend.Controllers
 
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult<List<Models.Response.MemeResponse>> Listar () 
         {
             try 
@@ -71,7 +71,27 @@ namespace backend.Controllers
                     new Models.Response.ErroResponse(400, ex.Message)
                 );
             }
-        }      
+        }*/
+
+        [HttpGet]
+        public ActionResult<List<Models.TbMemelation>> Listar () 
+        {
+            try 
+            {
+                List<Models.TbMemelation> lista = business.Listar();
+
+                if (lista.Count == 0)
+                    return NotFound();
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.ErroResponse(400, ex.Message)
+                );
+            }
+        }
 
         [HttpPut("{id}")]
         public ActionResult<Models.Response.MemeResponse> Alterar(int id, [FromForm] Models.Request.MemeRequest req) 

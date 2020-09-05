@@ -21,7 +21,7 @@ export default class MemeApi {
         return result.data
     }
 
-    async consultarMemes() {
+    async consultarMemes() { 
         const result = await api.get('/')
         return result.data
     }
@@ -43,6 +43,10 @@ export default class MemeApi {
         await api.put(`/${id}`, formtData, {
             headers: {'content-type': 'multipart/form-data'}
         })
+    }
+
+    async AlterarCurtidas(idmeme){
+        await api.put(`/curtidas/${idmeme}`)
     }
 
     async removerMemes(id) {

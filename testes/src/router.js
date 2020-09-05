@@ -8,6 +8,7 @@ import Consultar from './pages/Consulta2/index.js'
 import Alterar from './pages/Alterar/index.js'
 import Teste from './pages/Teste/index.js'
 import Spotify from './pages/Spotify'
+import Menu from './pages/Menu/index.js';
 
 export default function Rotas() {
     return (
@@ -18,6 +19,7 @@ export default function Rotas() {
                 <Route path = "/Alterar" component = {Alterar} />
                 <Route path = "/Teste" component = {Teste} />
                 <Route path = "/spotify" component = {Spotify} />
+                <Route path = "/Menu" component = {Menu} />
             </Switch>
         </BrowserRouter>
     )

@@ -48,7 +48,7 @@ namespace backend.Business
 
         public void AlterarCurtidas(int? id) 
         {
-                if (id <= 0)
+            if (id <= 0)
                 throw new Exception("ID inválido");
 
             db.AdicionarCurtidas(id);

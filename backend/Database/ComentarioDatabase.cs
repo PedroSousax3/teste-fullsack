@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Database
 {
@@ -8,7 +9,7 @@ namespace backend.Database
         Models.bd_fullstackContext bd = new Models.bd_fullstackContext();
         public Models.TbComentario InserirBD(Models.TbComentario comentario)
         {
-            bd.TbComentario.Add(comentario);
+            bd.Add(comentario);
             bd.SaveChanges();
 
             return comentario;
@@ -18,10 +19,21 @@ namespace backend.Database
         {
             List<Models.TbComentario> comentarios = bd.TbComentario
                                                       .Where(x => 
-                                                     x.IdMeme == idmeme)
+                                                     x.IdMemelation == idmeme)
                                                       .ToList();
             
             return comentarios;
         }
+
+        public List<Models.TbComentario> ConsultarMemeCompleto()
+        {
+            return bd.TbComentario.Include(x => x.IdMemelationNavigation).ToList();
+        }
+
+        public List<Models.TbComentario> ListarBD ()
+        {
+            return bd.TbComentario.ToList();
+        }
+        
     }
 }

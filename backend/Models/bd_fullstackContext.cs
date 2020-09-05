@@ -36,9 +36,17 @@ namespace backend.Models
                 entity.HasKey(e => e.IdComentario)
                     .HasName("PRIMARY");
 
+                entity.HasIndex(e => e.IdMemelation)
+                    .HasName("id_memelation");
+
                 entity.Property(e => e.DsComentario)
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.HasOne(d => d.IdMemelationNavigation)
+                    .WithMany(p => p.TbComentario)
+                    .HasForeignKey(d => d.IdMemelation)
+                    .HasConstraintName("tb_comentario_ibfk_1");
             });
 
             modelBuilder.Entity<TbListaFofa>(entity =>
@@ -98,6 +106,8 @@ namespace backend.Models
                 entity.Property(e => e.NmAutor)
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.NrCurtidas).HasDefaultValueSql("'0'");
             });
 
             OnModelCreatingPartial(modelBuilder);

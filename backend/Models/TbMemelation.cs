@@ -8,6 +8,11 @@ namespace backend.Models
     [Table("tb_memelation")]
     public partial class TbMemelation
     {
+        public TbMemelation()
+        {
+            TbComentario = new HashSet<TbComentario>();
+        }
+
         [Key]
         [Column("id_memelation")]
         public int IdMemelation { get; set; }
@@ -29,5 +34,8 @@ namespace backend.Models
         public DateTime DtInclusao { get; set; }
         [Column("nr_curtidas")]
         public int? NrCurtidas { get; set; }
+
+        [InverseProperty("IdMemelationNavigation")]
+        public virtual ICollection<TbComentario> TbComentario { get; set; }
     }
 }

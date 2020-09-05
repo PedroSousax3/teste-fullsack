@@ -22,6 +22,10 @@ namespace backend.Database
             return db.TbMemelation.ToList();
         }
 
+        public List<Models.TbMemelation> ListarTudo ()
+        {
+            return db.TbMemelation.Include(x => x.TbComentario).ToList();
+        }
 
         public Models.TbMemelation Alterar (int id, Models.TbMemelation novaTb)
         {
@@ -46,7 +50,7 @@ namespace backend.Database
         {
             Models.TbMemelation meme = db.TbMemelation.FirstOrDefault(x => x.IdMemelation == id);
 
-            meme.NrCurtidas = meme.NrCurtidas + 1;
+            meme.NrCurtidas = Convert.ToInt32(meme.NrCurtidas) + 1;
             db.SaveChanges();
         }
         
