@@ -24,16 +24,21 @@ export default function Consulta(){
     //loanding - Bar
     const ref = useRef(null);
 
+    //Dados do Meme
     const [registros, setRegistros] = useState([]);
+    //Dados dos Comentarios
     const [dadoscoment, setDadosComent] = useState([]);
+    //Valor do input de comentario
     const [comentario, setComentario] = useState("");
 
+    //Consuta todos os comentarios
     const consultComentario = async () => {
         let dados = await consultarComentario();
         setDadosComent([...dados])
         console.log(dadoscoment)
-    }  
+    } 
 
+    //Adiconar um comentario ao meme
     const adicionarComentario = async (meme) => {
         console.log(meme.idMemelation)
         
@@ -49,6 +54,7 @@ export default function Consulta(){
         toast.dark("✅ Comentario Adicionado com sucesso!!")
     }
 
+    //Consulta todos os meme
     const consultarTodos = async () => {
         ref.current.continuousStart()
         const result = await funcaoApi.consultarMemes();
@@ -56,13 +62,16 @@ export default function Consulta(){
         ref.current.complete()
         console.log(...registros)
         consultComentario();
-    }    
+    } 
+    
+    //Adiciona Curtida ao meme
     const adicionarCurtida = async (meme) => {
         await funcaoApi.AlterarCurtidas(meme.idMemelation)
 
         consultarTodos();
     }
 
+    //Remove um meme
     const removerPorId = async (meme) => {
         await funcaoApi.removerMemes(meme.id)
         consultarTodos();
